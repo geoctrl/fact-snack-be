@@ -9,7 +9,7 @@ export class ChallengeController {
   createChallenge(@Body() body: NewChallengeDto) {
     return this.challengeService.createChallenge(body);
   }
-  @Get("current")
+  @Get()
   getCurrentChallenge(@Query("date") date: string) {
     return this.challengeService.getCurrentChallenge(date);
   }
