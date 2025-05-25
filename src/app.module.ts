@@ -6,6 +6,8 @@ import { SupabaseModule } from "./supabase/supabase.module";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
+import { ChallengeModule } from "./challenge/challenge.module";
+import { UserChallengeModule } from "./user-challenge/user-challenge.module";
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { UserModule } from "./user/user.module";
     SupabaseModule,
     AuthModule,
     UserModule,
+    ChallengeModule,
+    UserChallengeModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService],

@@ -2242,6 +2242,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/validator@npm:^13.11.8":
+  version: 13.15.1
+  resolution: "@types/validator@npm:13.15.1"
+  checksum: 10/fcd6180ee18e8323e5b57cca391dace7f524a4136065e65bb9694a0b3f12a52271cbcdb282d697f092a53f834f1ed2879628443fb53b0a531a271b44da8d056a
+  languageName: node
+  linkType: hard
+
 "@types/ws@npm:^8.5.10":
   version: 8.18.1
   resolution: "@types/ws@npm:8.18.1"
@@ -3345,6 +3352,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-transformer@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "class-transformer@npm:0.5.1"
+  checksum: 10/750327e3e9a5cf233c5234252f4caf6b06c437bf68a24acbdcfb06c8e0bfff7aa97c30428184813e38e08111b42871f20c5cf669ea4490f8ae837c09f08b31e7
+  languageName: node
+  linkType: hard
+
+"class-validator@npm:^0.14.2":
+  version: 0.14.2
+  resolution: "class-validator@npm:0.14.2"
+  dependencies:
+    "@types/validator": "npm:^13.11.8"
+    libphonenumber-js: "npm:^1.11.1"
+    validator: "npm:^13.9.0"
+  checksum: 10/37fbbc2ddb335993bf6bbe3fcaa55ddb03e31dccdf6413753e7323e1f106fed888d298b1ecc3b2000d40096e63ee983790c2155056d0a404629bb22b31b051e0
+  languageName: node
+  linkType: hard
+
 "cli-cursor@npm:^3.1.0":
   version: 3.1.0
   resolution: "cli-cursor@npm:3.1.0"
@@ -4299,6 +4324,8 @@ __metadata:
     "@types/multer": "npm:^1"
     "@types/node": "npm:^22.10.7"
     "@types/supertest": "npm:^6.0.2"
+    class-transformer: "npm:^0.5.1"
+    class-validator: "npm:^0.14.2"
     cookie-parser: "npm:^1.4.7"
     eslint: "npm:^9.18.0"
     eslint-config-prettier: "npm:^10.0.1"
@@ -5938,6 +5965,13 @@ __metadata:
     prelude-ls: "npm:^1.2.1"
     type-check: "npm:~0.4.0"
   checksum: 10/2e4720ff79f21ae08d42374b0a5c2f664c5be8b6c8f565bb4e1315c96ed3a8acaa9de788ffed82d7f2378cf36958573de07ef92336cb5255ed74d08b8318c9ee
+  languageName: node
+  linkType: hard
+
+"libphonenumber-js@npm:^1.11.1":
+  version: 1.12.8
+  resolution: "libphonenumber-js@npm:1.12.8"
+  checksum: 10/476e5268f5a86509de80ed5e573afbd2aff457d88cbe116208d167563f538705d3b29c9cc45e8d58dc6b5d00babc348443e49239c367c4e2e26e8c71e96372bc
   languageName: node
   linkType: hard
 
@@ -8278,6 +8312,13 @@ __metadata:
     "@types/istanbul-lib-coverage": "npm:^2.0.1"
     convert-source-map: "npm:^2.0.0"
   checksum: 10/fb1d70f1176cb9dc46cabbb3fd5c52c8f3e8738b61877b6e7266029aed0870b04140e3f9f4550ac32aebcfe1d0f38b0bac57e1e8fb97d68fec82f2b416148166
+  languageName: node
+  linkType: hard
+
+"validator@npm:^13.9.0":
+  version: 13.15.0
+  resolution: "validator@npm:13.15.0"
+  checksum: 10/cc4435e37a72d65c01d0a90d0f65da1fe09a805de35be1ec37e5379e1a612ab280277d7034a5369cd491a4f94c3b551f75dc4851090efafedf529a1ef76b1e0f
   languageName: node
   linkType: hard
 
