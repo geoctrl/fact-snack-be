@@ -17,7 +17,7 @@ export class AuthController {
 
   @Post("sign-in")
   async signIn(
-    @Body() { email, password }: any,
+    @Body() { email, password }: { email: string; password: string },
     @Res({ passthrough: true }) res: Response,
   ) {
     const authTokenResponsePassword =
@@ -108,7 +108,7 @@ export class AuthController {
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const refreshToken = req.cookies["sb-refresh-token"];
+    const refreshToken = req.cookies["sb-refresh-token"] as string;
     if (!refreshToken) {
       throw new UnauthorizedException("No refresh token found");
     }
@@ -142,7 +142,7 @@ export class AuthController {
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const refreshToken = req.cookies["sb-refresh-token"];
+    const refreshToken = req.cookies["sb-refresh-token"] as string;
     if (!refreshToken) {
       throw new UnauthorizedException("No refresh token found");
     }
