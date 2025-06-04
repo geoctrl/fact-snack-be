@@ -14,5 +14,6 @@ import { QuestionRespository } from "./question/question.respository";
     QuestionService,
     QuestionRespository,
   ],
+  exports: [QuestionRespository],
 })
 export class ChallengeModule {}
