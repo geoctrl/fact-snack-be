@@ -6,11 +6,11 @@ import { NewChallengeDto } from "../dto/new-challenge.dto";
 export class ChallengeController {
   constructor(public challengeService: ChallengeService) {}
   @Post()
-  createChallenge(@Body() body: NewChallengeDto) {
-    return this.challengeService.createChallenge(body);
+  async createChallenge(@Body() body: NewChallengeDto) {
+    return await this.challengeService.createChallenge(body);
   }
   @Get()
-  getCurrentChallenge(@Query("date") date: string) {
-    return this.challengeService.getCurrentChallenge(date);
+  async getCurrentChallenge(@Query("date") date: string) {
+    return await this.challengeService.getCurrentChallenge(date);
   }
 }

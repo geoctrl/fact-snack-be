@@ -6,15 +6,15 @@ import { NewQuestionDto } from "../dto/new-question.dto";
 export class QuestionController {
   constructor(public questionService: QuestionService) {}
   @Post("question")
-  createQuestion(@Body() body: NewQuestionDto) {
-    return this.questionService.createQuestion(body);
+  async createQuestion(@Body() body: NewQuestionDto) {
+    return await this.questionService.createQuestion(body);
   }
   @Post("questions")
-  createBulkQuestions(@Body() body: NewQuestionDto[]) {
-    return this.questionService.createBulkQuestions(body);
+  async createBulkQuestions(@Body() body: NewQuestionDto[]) {
+    return await this.questionService.createBulkQuestions(body);
   }
   @Get("questions/:challengeId")
-  getQuestionsForChallenge(@Param("challengeId") challengeId: string) {
-    return this.questionService.getQuestionsForChallenge(challengeId);
+  async getQuestionsForChallenge(@Param("challengeId") challengeId: string) {
+    return await this.questionService.getQuestionsForChallenge(challengeId);
   }
 }

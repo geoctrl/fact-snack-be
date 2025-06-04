@@ -9,28 +9,67 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { UserChallengeService } from "./user-challenge.service";
-import { NewUserChallengeDto } from "./dto/new-user-challenge.dto";
 import { AuthGuard } from "src/auth/guards/auth.guard";
+import { FinishUserChallengeDto } from "./dto/finish-user-challenge.dto";
+import { StartUserChallengeDto } from "./dto/start-user-challenge.dto";
+import { TrackAnswerDto } from "./dto/track-answer.dto";
 
 @Controller("user-challenge")
 export class UserChallengeController {
   constructor(public userChallengeService: UserChallengeService) {}
-  @Post()
-  createUserChallenge(@Body() body: NewUserChallengeDto) {
-    return this.userChallengeService.createUserChallenge(body);
+  @UseGuards(AuthGuard)
+  @Post("start/:challengeId")
+  async startUserChallenge(
+    @Req() req: AuthenticatedRequest,
+    @Param("challengeId") challengeId: string,
+    @Body() body: StartUserChallengeDto,
+  ) {
+    const userId = req.user.id;
+    return await this.userChallengeService.createUserChallenge(
+      userId,
+      challengeId,
+      body.startedAt,
+    );
   }
-  @Patch("finish")
-  finishUserChallenge() {
-    // Logic to update a user challenge
-    return { message: "User challenge updated successfully" };
+  @UseGuards(AuthGuard)
+  @Patch("finish/:challengeId")
+  async finishUserChallenge(
+    @Param("challengeId") challengeId: string,
+    @Req() req: AuthenticatedRequest,
+    @Body() body: FinishUserChallengeDto,
+  ) {
+    const userId = req.user.id;
+    return await this.userChallengeService.finishChallenge(
+      userId,
+      challengeId,
+      body,
+    );
   }
   @UseGuards(AuthGuard)
   @Get(":challengeId")
-  getUserChallenge(
+  async getUserChallenge(
     @Param("challengeId") challengeId: string,
-    @Req() req: Request,
+    @Req() req: AuthenticatedRequest,
   ) {
-    // const userId = req.user.id;
-    // return this.userChallengeService.getUserChallenge(userId, challengeId);
+    const userId = req.user.id;
+    return await this.userChallengeService.getUserChallenge(
+      userId,
+      challengeId,
+    );
+  }
+  @UseGuards(AuthGuard)
+  @Patch("track/:challengeId")
+  async trackAnswer(
+    @Param("challengeId") challengeId: string,
+    @Req() req: AuthenticatedRequest,
+    @Body() body: TrackAnswerDto,
+  ) {
+    const userId = req.user.id;
+    return await this.userChallengeService.trackAnswer(
+      userId,
+      challengeId,
+      body.questionId,
+      body.answer,
+    );
   }
 }

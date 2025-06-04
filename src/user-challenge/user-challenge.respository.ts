@@ -2,21 +2,23 @@ import { Injectable } from "@nestjs/common";
 import { PostgrestSingleResponse } from "@supabase/supabase-js";
 import { UserChallenge } from "src/types";
 import { SupabaseService } from "src/supabase/supabase.service";
-import { NewUserChallengeDto } from "src/user-challenge/dto/new-user-challenge.dto";
 
 @Injectable()
 export class UserChallengeRepository {
   constructor(private readonly supabaseService: SupabaseService) {}
   async createUserChallenge(
-    newUserChallege: NewUserChallengeDto,
+    userId: string,
+    challengeId: string,
+    startedAt: string,
   ): Promise<UserChallenge> {
     const response: PostgrestSingleResponse<UserChallenge[]> =
       await this.supabaseService.client
         .from("user_challenges")
         .insert([
           {
-            user_id: newUserChallege.userId,
-            challenge_id: newUserChallege.challengeId,
+            user_id: userId,
+            challenge_id: challengeId,
+            started_at: startedAt,
           },
         ])
         .select("*");
@@ -33,7 +35,6 @@ export class UserChallengeRepository {
 
     return data[0];
   }
-
   async getUserChallenge(
     userId: string,
     challengeId: string,
@@ -55,5 +56,26 @@ export class UserChallengeRepository {
     }
 
     return data[0];
+  }
+  async updateUserChallenge(
+    userId: string,
+    challengeId: string,
+    updates: Partial<UserChallenge>,
+  ): Promise<UserChallenge | null> {
+    const response: PostgrestSingleResponse<UserChallenge[]> =
+      await this.supabaseService.client
+        .from("user_challenges")
+        .update(updates)
+        .eq("user_id", userId)
+        .eq("challenge_id", challengeId)
+        .select("*");
+
+    const { data, error } = response;
+
+    if (error) {
+      throw new Error(`Error updating user challenge: ${error.message}`);
+    }
+
+    return data[0] || null;
   }
 }

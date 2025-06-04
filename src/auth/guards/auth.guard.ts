@@ -6,7 +6,6 @@ import {
 } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { SupabaseService } from "../../supabase/supabase.service";
-import { Request } from "express";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -16,7 +15,7 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const req = context.switchToHttp().getRequest<Request>();
+    const req = context.switchToHttp().getRequest<AuthenticatedRequest>();
     const authHeader = req.headers["authorization"];
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
